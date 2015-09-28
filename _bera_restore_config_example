@@ -1,0 +1,43 @@
+##############################
+### BACKUP DOWNLOAD
+##############################
+# Whether to use a local backup or SSH to download the backup
+backupOrigin=ssh
+#backupOrigin=local
+# Local directory where backup is or directory where SSH will download the backup
+backupLocalDir=/home/myuser/backups/
+######## SSH BACKUP
+# Only if "backupOrigin=ssh"
+# User for SSH
+backupRemoteUser=backup
+# Server IP or domain
+backupRemoteServer=localhost
+# SSH port
+backupRemotePort=22
+# Remote path where backup is stored
+backupRemoteDir=/home/myuser/backups/
+# Whether to use current backup if available or always force to download a new backup (saves time and bandwith)
+backupRemoteForceDownload=1
+
+##############################
+### SYSTEM CONFIG TO CHECK
+##############################
+# Check whether services enabled at backed up server are enabled here
+checkEnabledServices=1
+
+# Check whether all packages installed at backed up server are installed here
+checkInstalledPackages=1
+
+# Check whether all users from backed up server are also created here
+checkUsers=1
+
+##############################
+### FILES
+##############################
+# Files excluded from restore (regexp is allowed, check "--exclude" param in "rsync")
+filesExcluded=(
+	"httpd"
+	"sphinx"
+	".ssh"
+	"/root"
+)

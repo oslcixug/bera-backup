@@ -1,0 +1,101 @@
+BERA (Backup Easy & Restore Anywhere) - Linux Server Backup Tool
+http://www.portalprogramas.com/en/bera-backup.php
+
+WHAT IS BERA?
+============================================================
+Bera is a backup system designed to easily backup and restore or migrate a Linux server in minutes.
+
+Backup all important files, folders, services configuration from a Linux server. Yet more important, you 
+can easily restore them in the same server or migrate them to a new one. Perform a full backup and restoration in 
+less than 10 minutes (depending upon the size of data).
+
+Backup everything you need from your server:
+	· Important files/folders or services configuration
+	· Sytem configuration (users, crontabs, iptables...)
+
+Features:
+	· Migrate a complex Linux server in less than 10 minutes
+	· Easy configuration and usage
+	· Exclude domains to backup
+	· Exclude files and folders from the backup using regex expressions
+	· High speed for incremental backups
+	· Reliable backup based on rsync
+	· Secure communications using SSH
+	· Shows a detailed report while working to see progress
+	· Keeps user ownerships and permissions
+	· Freely distributable source and executable (GPL license)
+
+Development background:
+	· Developed by our in-house tech staff 
+	· Tested in live with our own servers and websites
+
+
+HOW TO
+============================================================
+Bera helps you with most of the tedious work of restore or migrate a Linux server. But you need a first step:
+	1. Set up the server: Install the SO, config network, install packages...
+	2. Then, use Bera to download service configurations, files, folders...
+
+
+BERA REQUIREMENTS
+============================================================
+· Linux server (tested on CentOS)
+· rsync
+· SSH
+· Root access to both systems (required to backup/restore some services configuration)
+
+
+INSTALLATION
+============================================================
+Just upload both files to your server and set proper permissions:
+	chmod +x bera-backup.sh
+	chmod +x bera-restore.sh
+
+Each script needs a config file. You have an example of each at:
+	_bera_restore_config_example
+	_bera_backup_config_example
+
+
+USAGE
+============================================================
+./bera-backup.sh PATH_TO_CONFIG_FILE
+Creates a backup of the server in the specified folder
+
+./bera-restore.sh PATH_TO_CONFIG_FILE
+Downloads the backup from the backup server (or same server) and restores it.
+
+
+CONFIG PARAMETERS
+============================================================
+Please, refer to <<http://www.portalprogramas.com/en/bera-backup.php>> for details and examples
+
+
+WEBSITE
+============================================================
+Further information, examples, latests versions and details available at:
+http://www.portalprogramas.com/en/how-to/how-to-migrate-linux-server-10-minutes.html
+
+
+SPECIAL THANKS TO
+============================================================
+In order to develop this script we found very useful help at sites like
+http://www.cyberciti.biz/tips/linux-get-list-installed-software-reinstallation-restore.html
+http://stackoverflow.com/
+http://www.rpm.org/wiki/Docs/QueryFormat
+http://www.howtogeek.com/168009/how-to-exclude-files-from-rsync/
+http://serverfault.com/questions/328089/ctrl-c-in-bash-scripts
+
+KNOWN ISSUES
+============================================================
+- "Permission denied" when downloading backups. Example: 
+	rsync: send_files failed to open "/home/.../qr.png": Permission denied (13)
+As Bera tries to keep permissions and ownerships untouched, this kind of error can arise if the files has very restrictive permissions.
+
+
+DISCLAIMER
+============================================================
+PLEASE NOTE: THIS SOFTWARE IS BEING MADE AVAILABLE "AS-IS".  We make
+no warranties that it will work for you.  As such there is no support
+available.
+
+

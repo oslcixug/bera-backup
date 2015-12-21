@@ -32,7 +32,7 @@ fi
 # Temos acceso ao servidor
 # Procedemos a realizar a copia dos ficheiros
 
-cd .scp -p cixug-suxi-sug:bera-backup/backup.tar.gz /media/backup/cixug-suxi-sug/$(date +%y%m%d).backup.tar.gz
+scp -p cixug-suxi-sug:bera-backup/backup.tar.gz /media/backup/cixug-suxi-sug/$(date +%y%m%d).backup.tar.gz
 
 # Comprobamos o número de copias gardadas
 

@@ -155,6 +155,10 @@ echo "----------------------------------"
 # Create folder where config is stored
 mkdir ${backupDirConfig}		2>/dev/null
 
+# Dump database
+echo "$txtCreatingBackup databases..."
+mysqldump --defaults-file=/home/osl/.my.cnf -h $DBHOST --max_allowed_packet=1024M -u $DBUSER $DBNAME > ${backupDirConfig}$DBNAME.sql
+
 # Save user names which should exist in new server
 echo "$txtCreatingBackup users..."
 userBackupFile=${backupDirConfig}/users
@@ -199,8 +203,8 @@ fi
 # List of installed packages
 if [ "$checkInstalledPackages" = "1" ]; then
 	# Sometimes RPM is not the package manager
-	if type "rpm" > /dev/null; then
-		echo "$txtChecking installed packages..."
+	if [ $PackagesSystem == "RPM" ]; then
+		echo "$txtChecking installed RPM packages..."
 		rpm -qa --qf "%{NAME}\n" | sort > /tmp/$installedPackagesFile.tmp
 
 		# Now adding more information for each package
@@ -211,6 +215,10 @@ if [ "$checkInstalledPackages" = "1" ]; then
 			echo "$concretePackage	$provider" >> ${backupDirConfig}/$installedPackagesFile
 		done < /tmp/$installedPackagesFile.tmp
 		rm -f /tmp/$installedPackagesFile.tmp
+	elif [ $PackagesSystem == "DEB" ]; then
+		echo "$txtChecking installed APT packages..."
+		dpkg-query -l > ${backupDirConfig}/$installedPackagesFile.tab
+		dpkg-query -f '${binary:Package}\n' -W > ${backupDirConfig}/$installedPackagesFile.lst
 	fi
 fi
 

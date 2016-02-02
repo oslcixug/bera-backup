@@ -156,8 +156,8 @@ echo "----------------------------------"
 mkdir ${backupDirConfig}		2>/dev/null
 
 # Dump database
-echo "$txtCreatingBackup databases..."
-mysqldump --defaults-file=/home/osl/.my.cnf -h $DBHOST --max_allowed_packet=1024M -u $DBUSER $DBNAME > ${backupDirConfig}$DBNAME.sql
+# echo "$txtCreatingBackup databases..."
+# mysqldump --defaults-file=/home/osl/.my.cnf -h $DBHOST --max_allowed_packet=1024M -u $DBUSER $DBNAME > ${backupDirConfig}$DBNAME.sql
 
 # Save user names which should exist in new server
 echo "$txtCreatingBackup users..."
